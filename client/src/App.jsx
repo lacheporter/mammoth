@@ -6,6 +6,7 @@ import {
   Button,
   Card,
   CardContent,
+  CardMedia,
   Chip,
   Container,
   Grid,
@@ -18,6 +19,10 @@ import ConstructionIcon from '@mui/icons-material/Construction';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import DomainIcon from '@mui/icons-material/Domain';
 import ServiceCard from './components/ServiceCard';
+import blueprintsImg from './assets/blueprints.jpg';
+import graniteImg from './assets/cutting-granite-stones-8028375.jpg';
+import excavatorImg from './assets/excavaotr.jpg';
+import framingImg from './assets/framing.jpg';
 
 function App() {
   const submitted = useMemo(() => {
@@ -42,6 +47,28 @@ function App() {
         title: 'Design-Build Teams',
         description: 'Integrated engineering and field teams that reduce rework and control costs.',
         icon: <EngineeringIcon fontSize="large" />,
+      },
+    ],
+    [],
+  );
+
+  const projectPhotos = useMemo(
+    () => [
+      {
+        src: blueprintsImg,
+        alt: 'Construction planning blueprints on a desk',
+      },
+      {
+        src: graniteImg,
+        alt: 'Stone cutting work on a construction project',
+      },
+      {
+        src: excavatorImg,
+        alt: 'Excavator operating on a job site',
+      },
+      {
+        src: framingImg,
+        alt: 'Wood framing in progress for a structure',
       },
     ],
     [],
@@ -103,6 +130,26 @@ function App() {
             </Grid>
           ))}
         </Grid>
+
+        <Box sx={{ mt: 5 }}>
+          <Typography variant="h5" fontWeight={700} sx={{ mb: 2 }}>
+            Recent Project Highlights
+          </Typography>
+          <Grid container spacing={2}>
+            {projectPhotos.map((photo) => (
+              <Grid key={photo.src} item xs={12} sm={6} md={3}>
+                <Card elevation={0} sx={{ borderRadius: 2, overflow: 'hidden' }}>
+                  <CardMedia
+                    component="img"
+                    image={photo.src}
+                    alt={photo.alt}
+                    sx={{ height: 220, objectFit: 'cover' }}
+                  />
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
         <Card id="quote-form" elevation={0} sx={{ mt: 4, borderRadius: 3, p: { xs: 2, md: 3 } }}>
           <CardContent>
