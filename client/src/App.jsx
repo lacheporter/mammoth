@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Alert,
   AppBar,
@@ -25,10 +25,31 @@ import excavatorImg from './assets/excavator-optimized.webp';
 import treeRemovalImg from './assets/tree-removal-optimized.webp';
 
 function App() {
-  const submitted = useMemo(() => {
+  const [submitted, setSubmitted] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     return params.get('submitted') === 'true';
-  }, []);
+  });
+
+  const handleQuoteSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString(),
+    });
+
+    setSubmitted(true);
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('submitted', 'true');
+    window.history.replaceState({}, '', url.toString());
+
+    form.reset();
+  };
 
   const services = useMemo(
     () => [
@@ -118,7 +139,7 @@ function App() {
         </Container>
       </AppBar>
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 3, md: 6 }, pb: { xs: 6, md: 10 } }}>
+      <Container maxWidth="lg" sx={{ pt: { xs: 1.5, md: 6 }, pb: { xs: 6, md: 10 } }}>
         <Card
           elevation={0}
           sx={{
@@ -149,12 +170,11 @@ function App() {
                 variant="h2"
                 sx={{ maxWidth: 760, fontSize: { xs: '2rem', md: '2.6rem' } }}
               >
-                Strong foundations. Predictable delivery. Safer jobsites.
+                From tree clearing to gravel moving, grading, and demolition.
               </Typography>
               <Typography variant="body1" sx={{ maxWidth: 760 }}>
-                Mammoth Construction LLC, based in Greenwood, SC, partners with owners and
-                developers to build commercial and civil projects with clarity, craftsmanship, and
-                schedule discipline.
+                We prepare sites the right way for residential and light commercial projects across
+                Greenwood, SC and surrounding areas.
               </Typography>
             </Stack>
           </CardContent>
@@ -224,6 +244,7 @@ function App() {
                 name="quote-request"
                 method="POST"
                 action="/"
+                onSubmit={handleQuoteSubmit}
                 data-netlify="true"
                 netlify-honeypot="bot-field"
               >
@@ -293,7 +314,7 @@ function App() {
                     sx={{
                       p: 2,
                       borderRadius: 2,
-                      textAlign: 'center',
+                      textAlign: { xs: 'left', sm: 'center' },
                       height: '100%',
                     }}
                   >
@@ -301,7 +322,7 @@ function App() {
                       Phone
                     </Typography>
                     <Typography variant="body1" fontWeight={600}>
-                      (864) 555-0172
+                      (580) 821-6235
                     </Typography>
                   </Box>
                 </Grid>
@@ -310,15 +331,19 @@ function App() {
                     sx={{
                       p: 2,
                       borderRadius: 2,
-                      textAlign: 'center',
+                      textAlign: { xs: 'left', sm: 'center' },
                       height: '100%',
                     }}
                   >
                     <Typography variant="body2" color="text.secondary">
                       Email
                     </Typography>
-                    <Typography variant="body1" fontWeight={600}>
-                      bojanglesarby@aol.com
+                    <Typography
+                      variant="body1"
+                      fontWeight={600}
+                      sx={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}
+                    >
+                      camalanhinkle@gmail.com
                     </Typography>
                   </Box>
                 </Grid>
@@ -327,7 +352,7 @@ function App() {
                     sx={{
                       p: 2,
                       borderRadius: 2,
-                      textAlign: 'center',
+                      textAlign: { xs: 'left', sm: 'center' },
                       height: '100%',
                     }}
                   >
@@ -344,7 +369,7 @@ function App() {
                     sx={{
                       p: 2,
                       borderRadius: 2,
-                      textAlign: 'center',
+                      textAlign: { xs: 'left', sm: 'center' },
                       height: '100%',
                     }}
                   >
