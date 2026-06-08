@@ -122,7 +122,7 @@ function App() {
                 component="form"
                 name="quote-request"
                 method="POST"
-                action="/?submitted=true#quote-form"
+                action="/"
                 data-netlify="true"
                 netlify-honeypot="bot-field"
               >
