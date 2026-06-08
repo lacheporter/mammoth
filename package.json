@@ -1,0 +1,20 @@
+{
+  "name": "mammoth",
+  "version": "1.0.0",
+  "description": "Mammoth Construction single-page app",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "dev:client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
+}
