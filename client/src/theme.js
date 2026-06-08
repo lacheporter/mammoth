@@ -4,18 +4,26 @@ export const mammothTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#C2854D',
+      main: '#F27A1A',
+      light: '#FFB066',
+      dark: '#BD5300',
     },
     secondary: {
-      main: '#2E5A5C',
+      main: '#2F3B46',
+      light: '#596673',
+      dark: '#1C242C',
     },
     background: {
-      default: '#F8F4EF',
-      paper: '#FFFFFF',
+      default: '#F4EFE7',
+      paper: '#FBF8F3',
     },
     text: {
-      primary: '#1F2D3A',
-      secondary: '#445566',
+      primary: '#202831',
+      secondary: '#4B5661',
+    },
+    divider: '#D8CDBE',
+    action: {
+      hover: 'rgba(47, 59, 70, 0.06)',
     },
   },
   shape: {
